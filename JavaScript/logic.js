@@ -13,11 +13,13 @@ $(document).ready(() => {
 
         currentTime.text(displayCurrentTime.format("MMM Do, YYYY hh:mm:ss"));
     }
-        , 1000);
+        , 1000); //looping every sec to update the time displayed
 
     // create eventListener for save Btn
 
-    let descriptionArray = JSON.parse(localStorage.getItem('descriptionArray')) || [];
+        // array created to parse items into it
+
+    let descriptionArray = JSON.parse(localStorage.getItem('descriptionArray').value) || [];
 
     saveBtn.on('click', (event) => {
         //getting values from within .description
@@ -38,7 +40,7 @@ $(document).ready(() => {
 
     
     // create function to set .description color depending on time now
-
+        // loop thru all hour items to set their color
     for (let hour = 9; hour < 18; hour++) {
         let time = "present";
         if (hour > currentTime) {
@@ -46,9 +48,9 @@ $(document).ready(() => {
         } else if (hour < currentTime) {
             time = "past";
         }
-
+        // select the items with id initials hour-X . with X being any number after the dash sign
         const timeSlot = $("#hour-" + hour);
-
+            // grabbing from pre-defined values for variable time it sets of the color of the children element accordingly
         if (timeSlot && timeSlot.length) {
             timeSlot.children().eq(1).addClass(time);
         }
