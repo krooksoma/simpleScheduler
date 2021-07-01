@@ -17,12 +17,21 @@ $(document).ready(() => {
 
     // create eventListener for save Btn
 
+    let descriptionArray = JSON.parse(localStorage.getItem('descriptionArray')) || [];
 
-    saveBtn.on('click', () => {
-        let value = $(this).siblings('.description').val();
-        console.log(value);
-        let valuesArray = [];
+    saveBtn.on('click', (event) => {
+        //getting values from within .description
+        let value = $(this).siblings('.description').value;
+        event.preventDefault();
+        console.log(typeof value);
+        // creating array to stores values
+
         
+        // push item into array
+        descriptionArray.push(value);
+        console.log(descriptionArray);
+        
+        localStorage.setItem('descriptionArray', JSON.stringify(descriptionArray));
 
 
     });
