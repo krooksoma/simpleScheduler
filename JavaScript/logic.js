@@ -17,24 +17,24 @@ $(document).ready(() => {
 
     
 
-    saveBtn.on('click', () => {
-        let value = $(this).siblings('.description').val();
+    saveBtn.on('click', function() {
+        //getting the value from all Btn siblings
+        console.log($(this));
+        let value = $(this).siblings('.description').val().trim();
         let time = $(this).parent().attr('id');
-        //getting values from within .description
-        for(let i = 9; i < 18; i++){
-            $('#hour-' + i).children('.description').val(localStorage.getItem('.hour-' +i));
-            console.log(i);
-        }
-        
         console.log(value);
-        // setting item value in local Storage
-        
+        console.log(time);      
+        // setting item value in local Storage 
+            
         localStorage.setItem(time, value);
+                
     });
 
-   
-   
-      
+    for( let i = 9; i < 18; i++){
+        $('#hour-' + i).children().eq(1).val(localStorage.getItem('hour-'+i));
+    }
+
+          
     // create function to set .description color depending on time now
         // loop thru all hour items to set their color
 
